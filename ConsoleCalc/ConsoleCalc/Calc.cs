@@ -6,11 +6,23 @@ using System.Threading.Tasks;
 
 namespace ConsoleCalc
 {
-    public class Calc
+    public static class Calc
     {
-        public int Sub(int x, int y)
+        static public double Sub(double x, double y)
         {
-            return x-y;
+            return x - y;
+        }
+        static public double Sum(double x, double y)
+        {
+            return x + y;
+        }
+        static public double Multiplication(double x, double y)
+        {
+            return x * y;
+        }
+        static public double Division(double x, double y)
+        {
+            return x / y;
         }
     }
 }
