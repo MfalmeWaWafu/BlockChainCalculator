@@ -10,6 +10,9 @@ namespace ConsoleCalc
     {
         static void Main(string[] args)
         {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Калькулятор");
+            Console.ResetColor();
             Console.ReadKey();
         }
     }
