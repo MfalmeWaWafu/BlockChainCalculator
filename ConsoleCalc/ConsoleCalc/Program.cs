@@ -1,6 +1,8 @@
-﻿using System;
+﻿using ConsoleCalc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,49 +12,45 @@ namespace ConsoleCalc
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Введите операцию:\nSum - Сумма\nSub - Разность\nMul - Умножение\nDiv - Деление\n");
-            string op = Console.ReadLine();
-            string first = args[0];
-            string second = args[1];
-            double firstn, secondn, result = 0;
-            if ((Double.TryParse(first, out firstn)) && (Double.TryParse(second, out secondn)))
+            var calc = new Calc();
+            string[] param = new string[10];
+            var operations = calc.GetOperNames();
+            if (args.Length == 0)
             {
-                switch (op)
+                Console.WriteLine("Введите операцию");
+                foreach (var item in operations)
                 {
-                    case ("Sum"):
-                        {
-                            result = Calc.Sum(firstn, secondn);
-                            break;
-                        }
-                    case ("Sub"):
-                        {
-                            result = Calc.Sub(firstn, secondn);
-                            break;
-                        }
-                    case ("Mul"):
-                        {
-                            result = Calc.Multiplication(firstn, secondn);
-                            break;
-                        }
-                    case ("Div"):
-                        {
-                            result = Calc.Division(firstn, secondn);
-                            break;
-                        }
-                    default:
-                        {
-                            Console.Clear();
-                            Console.WriteLine("Неизвестная операция");
-                            break;
-                        }
+                    Console.WriteLine(item);
                 }
-                Console.WriteLine(result);
+
+                string oper = Console.ReadLine();
+                Console.WriteLine("Введите аргументы функции:");
+                string numbers = Console.ReadLine();
+                string[] ar = numbers.Split(',');
+                Array.ConstrainedCopy(ar,0,param,2,ar.Length);
+                param[0] = oper;
+                param[1] = ar.Length.ToString();
             }
-            else
-            {
-                Console.WriteLine("Неверные аргументы");
-            }
+            Calculation(param);
             Console.ReadKey();
+        }
+
+        static void Calculation(string[] array)
+        {
+            var calc = new Calc();
+            double result = 0;
+            double[] mas = new double[10];
+            int count = Convert.ToInt32(array[1]) + 2;
+            for (int i=2; i<count;i++)
+            {
+                if (!Double.TryParse(array[i], out mas[i-2]))
+                {
+                    Console.WriteLine("Один или несколько аргументов имеют неверный формат");
+                }
+            }
+            result = calc.Exec(array[0], mas);
+            //Console.WriteLine($"{array[0]}({firstnum},{secondnum}) = {result}");
+            Console.WriteLine(result);
         }
     }
 }
