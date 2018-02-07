@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ItUniver.Calc.Core.Interfaces
 {
-    interface IOperation
+    public interface IOperation
     {
         int argCount { get; }
         string Name { get; }

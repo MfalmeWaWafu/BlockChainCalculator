@@ -2,6 +2,7 @@
 using ItUniver.Calc.Core.Operations;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -13,16 +14,15 @@ namespace ConsoleCalc
     {
         private IList<IOperation> operations { get; set; }
 
-        public Calc()
+        public void LoadOperation(Assembly assembly)
         {
-            operations = new List<IOperation>();
-            var assembly = Assembly.GetExecutingAssembly();
             var types = assembly.GetTypes();
-            foreach (var item in types)
+            var typeOperation = typeof(IOperation);
+            foreach (var item in types.Where(t=>!t.IsAbstract && !t.IsInterface))
             {
                 var interfaces = item.GetInterfaces();
 
-                var isOperation = interfaces.Any(it=>it == typeof(IOperation));
+                var isOperation = interfaces.Any(it => it == typeOperation);
                 if (isOperation)
                 {
                     //Создаем экземпрляр объекта
@@ -37,6 +37,26 @@ namespace ConsoleCalc
                     }
                 }
             }
+        }
+
+        public Calc()
+        {
+            operations = new List<IOperation>();
+            //var assembly = Assembly.GetExecutingAssembly();
+            //Загружаем свои библиотеки
+            LoadOperation(Assembly.GetExecutingAssembly());
+
+            //Загружаем сторонние библиотеки
+            var extensionsDir = Environment.CurrentDirectory;
+            var files = Directory.GetFiles(extensionsDir + "Extensions", "*.dll");
+            foreach (var item in files)
+            {
+                //var assembly = Assembly.LoadFile(@"C:\It-Univer\BlockChainCalculator\Google.Calc.Finance\Google.Calc.Finance\bin\Debug\Google.Calc.Finance.dll");
+                LoadOperation(Assembly.LoadFile(item));
+            }
+
+            
+            
         }
 
         /// <summary>
