@@ -13,9 +13,10 @@ namespace ConsoleTest
             //Arrange
             int x = 10;
             int y = 5;
+            var calc = new Calc();
 
             //Act
-            var result = Calc.Sub(x, y);
+            var result = calc.Sub(x, y);
 
             //Assert
             Assert.AreEqual(5, result);
@@ -25,8 +26,9 @@ namespace ConsoleTest
         {
             double x = 5.2;
             double y = 2.8;
+            var calc = new Calc();
 
-            var result = Calc.Sum(x, y);
+            var result = calc.Sum(x, y);
 
             Assert.AreEqual(8.0, result);
         }
@@ -36,8 +38,9 @@ namespace ConsoleTest
         {
             double x = 2.5;
             double y = 3.5;
+            var calc = new Calc();
 
-            var result = Calc.Multiplication(x, y);
+            var result = calc.Multiplication(x, y);
 
             Assert.AreEqual(8.75, result);
         }
@@ -47,8 +50,9 @@ namespace ConsoleTest
         {
             double x = 6.0;
             double y = 1.5;
+            var calc = new Calc();
 
-            var result = Calc.Division(x,y);
+            var result = calc.Division(x,y);
 
             Assert.AreEqual(4.0, result);
         }
