@@ -46,6 +46,7 @@ namespace ConsoleCalc
                 if (!Double.TryParse(array[i], out mas[i-2]))
                 {
                     Console.WriteLine("Один или несколько аргументов имеют неверный формат");
+                    break;
                 }
             }
             result = calc.Exec(array[0], mas);
