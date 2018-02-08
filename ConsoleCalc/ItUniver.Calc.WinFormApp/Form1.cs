@@ -38,7 +38,7 @@ namespace ItUniver.Calc.WinFormApp
             int rnd = random.Next(0, cbOperation.Controls.Count);
             var operations = calc.GetOperNames();
             cbOperation.SelectedText = operations[rnd];
-            tbInput.Text = "12 34 56";
+            tbInput.Text = "12 34 78";
             btnCalc_Click(sender, e);
         }
 
