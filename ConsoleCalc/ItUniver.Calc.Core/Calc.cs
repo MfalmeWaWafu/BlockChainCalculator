@@ -44,16 +44,17 @@ namespace ConsoleCalc
             operations = new List<IOperation>();
             //Загружаем свои библиотеки
             LoadOperation(Assembly.GetExecutingAssembly());
-
-            //Загружаем сторонние библиотеки
-            var extensionsDir = Environment.CurrentDirectory;
+            
+            // Загружаем сторонние библиотеки с операциями
+            var extensionsDir = Path.Combine(Environment.CurrentDirectory, "Extensions");
 
             if (!Directory.Exists(extensionsDir))
                 return;
-            var files = Directory.GetFiles(extensionsDir + "\\Extensions", "*.dll");
-            foreach (var item in files)
+
+            var files = Directory.GetFiles(extensionsDir, "*.dll");
+            foreach (var file in files)
             {
-                LoadOperation(Assembly.LoadFile(item));
+                LoadOperation(Assembly.LoadFile(file));
             }
 
             
@@ -64,6 +65,7 @@ namespace ConsoleCalc
         /// Получить список имен операций
         /// </summary>
         /// <returns></returns>
+        [Obsolete("Будет удалено в следующей версии")]
         public string[] GetOperNames()
         {
             return operations.Select(o => o.Name).ToArray(); ;

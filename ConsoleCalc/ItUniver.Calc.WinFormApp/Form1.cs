@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ConsoleCalc;
+using ItUniver.Calc.Core.Interfaces;
 
 namespace ItUniver.Calc.WinFormApp
 {
@@ -23,12 +24,22 @@ namespace ItUniver.Calc.WinFormApp
 
             #region Загрузка операций
             calc = new ConsoleCalc.Calc();
+            cbOperation.Items.Clear();
             var operations = calc.GetOperNames();
+            //var superOperations = operations.OfType<SuperOperation>();
+
+            //cbOperation.Items.AddRange(superOperations.Select(s => s.OwnerName).ToArray());
+            //cbOperation.Items.AddRange(operations
+            //    .Except(superOperations)
+            //    .Select(s => s.Name)
+            //    .ToArray());
 
             cbOperation.Items.AddRange(operations);
             #endregion
 
-
+            #region Загрузка истории
+            lbHistory.Items.AddRange(MyHelper.GetAll());
+            #endregion
         }
 
         private void btnLuck_Click(object sender, EventArgs e)
@@ -61,6 +72,12 @@ namespace ItUniver.Calc.WinFormApp
             var result = calc.Exec(oper, args.ToArray());
             //Показать результат
             tbResult.Text = $"{result}";
+
+            // добавить в историю БД
+            MyHelper.AddToHistoty(oper, args.ToArray(), result);
+            //добавить в историю на форму
+            lbHistory.Items.Clear();
+            lbHistory.Items.AddRange(MyHelper.GetAll());
         }
 
         private void cbOperation_TextChanged(object sender, EventArgs e)
@@ -78,6 +95,14 @@ namespace ItUniver.Calc.WinFormApp
                 tbResult.Enabled = true;
                 btnCalc.Enabled = true;
                 btnReset.Enabled = true;
+            }
+        }
+
+        private void tbInput_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter)
+            {
+                btnCalc_Click(sender, e);
             }
         }
     }

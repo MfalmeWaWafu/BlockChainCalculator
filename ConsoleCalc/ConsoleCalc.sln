@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItUniver.Calc.Core", "ItUni
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItUniver.Calc.WinFormApp", "ItUniver.Calc.WinFormApp\ItUniver.Calc.WinFormApp.csproj", "{008E7A41-FAC1-43ED-9B7D-57FC35275A21}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ituniver.Calc.DB", "..\Ituniver.Calc.DB\Ituniver.Calc.DB.csproj", "{DE8FEDAD-B3C6-49E9-9E54-C446923D62D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItUniver.Calc.WebCalc", "..\WebCalc\ItUniver.Calc.WebCalc.csproj", "{98FBE4E0-09D9-47BC-81EC-5228486B506A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{008E7A41-FAC1-43ED-9B7D-57FC35275A21}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{008E7A41-FAC1-43ED-9B7D-57FC35275A21}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{008E7A41-FAC1-43ED-9B7D-57FC35275A21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE8FEDAD-B3C6-49E9-9E54-C446923D62D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE8FEDAD-B3C6-49E9-9E54-C446923D62D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE8FEDAD-B3C6-49E9-9E54-C446923D62D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE8FEDAD-B3C6-49E9-9E54-C446923D62D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98FBE4E0-09D9-47BC-81EC-5228486B506A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98FBE4E0-09D9-47BC-81EC-5228486B506A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98FBE4E0-09D9-47BC-81EC-5228486B506A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98FBE4E0-09D9-47BC-81EC-5228486B506A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
